@@ -18,7 +18,13 @@ class BaseModel:
 
     """
     def __init__(self, *args, **kwargs):
-        """Initialize an instance of the BaseModel class"""
+        """Initialize an instance of the BaseModel class
+
+        Args:
+            args (list): Wont be used yet
+            kwargs (dict): This member's arguments will be used
+                            for the constructor of a BaseModel
+        """
 
         if kwargs:
             for k, v in kwargs.items():
@@ -32,23 +38,31 @@ class BaseModel:
             self.updated_at = datetime.now()
 
     def __str__(self):
-        """Return the string representation of the class"""
+        """ A string representation of the class
+        Returns:
+            The string representation of the class
+        """
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
         """
 
-        Update the public instance attribute
-        `updated_at` with the current datetime
+        Update the public instance attribute `updated_at`
+        with the current datetime
 
         """
         self.updated_at = datetime.now()
 
     def to_dict(self):
-        """
+        """ A dictionary representation of the class
 
-        Return a dictionary containing all
-        keys/values of __dict__ of the instance
+        Returns:
+        A dictionary containing all keys/values of __dict__
+        of the instance.
+        a key `__class__` is added to this dictionary with the
+        class name of the object.
+        `created_at` and `updated_at` must be converted to
+        string object in ISO format.
 
         """
 
