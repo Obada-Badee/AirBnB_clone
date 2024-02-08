@@ -6,11 +6,11 @@
 
 ## Table of Contents
 
-- [Description](##description-)
-- [Storage engine](##storage-engine)
-- [Command Interpreter](##command-interpreter)
-- [How to Start the Console](##how-to-start-the-console)
-- [Examples](#examples)
+- [Description](##Description-)
+- [Storage engine](##Storage-engine)
+- [Command Interpreter](##Command-Interpreter)
+- [How to Start the Console](##How-to-start-the-console)
+- [Examples](#Examples)
 
 ## Description :house:
 The Airbnb Console is a A command interpreter to manipulate data without a visual interface, like in a Shell (perfect for development and debugging). The ALX Airbnb Console provides a convenient way to create your data model, manage(create, update, destroy, etc) and manipulate data related to Airbnb users, store and persist data to a file (JSON file).
@@ -25,7 +25,7 @@ The console will be a tool to validate this storage engine.
 
 The ALX Airbnb Console is built on a command interpreter that allows users to interact with the system through a series of commands. Here's how to start and use the console:
 
-## How to Start the Console :grey_question:
+## How to start the console :grey_question:
 
 To start the ALX Airbnb Console, follow these steps:
 
