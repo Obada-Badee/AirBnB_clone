@@ -118,7 +118,8 @@ class HBNBCommand(cmd.Cmd):
                     print("** value missing **")
                 else:
                     if args[2] in objects[key].keys():
-                        value_type = type(objects[key].__class__.__dict__[args[2]])
+                        value_type = type(
+                                objects[key].__class__.__dict__[args[2]])
                         setattr(objects[key], args[2], value_type(args[3]))
                     else:
                         setattr(objects[key], args[2], args[3])
@@ -141,5 +142,3 @@ class HBNBCommand(cmd.Cmd):
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
-
-
