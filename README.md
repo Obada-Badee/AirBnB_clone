@@ -6,10 +6,10 @@
 
 ## Table of Contents
 
-- [Description](#description)
+- [Description](#description-house)
 - [Storage engine](#storage-engine)
 - [Command Interpreter](#command-interpreter)
-- [How to Start the Console](#how-to-start-the-console)
+- [How to Start the Console](#how-to-start-the-console-grey_question)
 - [Examples](#examples)
 
 ## Description :house:
