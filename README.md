@@ -1,18 +1,16 @@
 <h1 align="center">AirBnB clone</h1>
 
 <p align="center">
-  <img src="https://github.com/Obada-Badee/AirBnB_clone/blob/master/assets/hbnb-logo.png"
-       width="500"
-  >
+  <img src="https://github.com/Obada-Badee/AirBnB_clone/blob/master/assets/hbnb-logo.png" alt="HBNB">
 </p>
 
 ## Table of Contents
 
-- [Description](#Description)
-- [Storage engine](#Storage engine)
-- [Command Interpreter](#Command Interpreter)
-- [How to Start the Console](#How to Start the Console)
-- [Examples](#Examples)
+- [Description](##description-)
+- [Storage engine](##storage-engine)
+- [Command Interpreter](##command-interpreter)
+- [How to Start the Console](##how-to-start-the-console)
+- [Examples](#examples)
 
 ## Description :house:
 The Airbnb Console is a A command interpreter to manipulate data without a visual interface, like in a Shell (perfect for development and debugging). The ALX Airbnb Console provides a convenient way to create your data model, manage(create, update, destroy, etc) and manipulate data related to Airbnb users, store and persist data to a file (JSON file).
