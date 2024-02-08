@@ -6,18 +6,13 @@ import cmd
 import models
 from models.base_model import BaseModel
 from models.user import User
-from models.state import State
-from models.city import City
-from models.amenity import Amenity
-from models.place import Place
-from models.review import Review
+
 
 class HBNBCommand(cmd.Cmd):
     """The HBNB command interpreter"""
 
     prompt = "(hbnb) "
-    classes = {BaseModel, User, State, City, Amenity,
-               Place, Review}
+    classes = {"BaseModel", "User"}
 
     def do_quit(self, line):
         """Quit command to exit the program"""
@@ -42,7 +37,7 @@ class HBNBCommand(cmd.Cmd):
             object = eval(line)()
             object.save()
             print(object.id)
-    
+
     def do_show(self, line):
         """Prints the string representation of an instance"""
         if not line:
@@ -79,7 +74,7 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     del objects[key]
                     models.storage.save()
-    
+
     def do_all(self, line):
         """Prints all string representation of all instances"""
         objects = models.storage.all()
@@ -115,6 +110,7 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     objects[key].__dict__[args[2]] = args[3]
                     objects[key].save()
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()

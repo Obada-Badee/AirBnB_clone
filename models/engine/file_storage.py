@@ -10,6 +10,7 @@ deserializes JSON file to instances
 
 import json
 from models.base_model import BaseModel
+from models.user import User
 
 
 class FileStorage:
@@ -53,8 +54,8 @@ class FileStorage:
         try:
             with open(FileStorage.__file_path, "r") as f:
                 objects_as_dict = json.load(f)
-                FileStorage.__objects =
-                {obj_id: eval(obj_dict["__class__"])(**obj_dict)
-                 for obj_id, obj_dict in objects_as_dict.items()}
+                FileStorage.__objects = {
+                    obj_id: eval(obj_dict["__class__"])(**obj_dict)
+                    for obj_id, obj_dict in objects_as_dict.items()}
         except FileNotFoundError:
             pass
