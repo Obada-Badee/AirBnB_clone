@@ -6,9 +6,9 @@
 
 ## Table of Contents
 
-- [Description](#description-)
+- [Description](#description)
 - [Storage engine](#storage-engine)
-- [Command Interpreter](#command-Interpreter)
+- [Command Interpreter](#command-interpreter)
 - [How to Start the Console](#how-to-start-the-console)
 - [Examples](#examples)
 
@@ -21,7 +21,7 @@ The first piece is to manipulate a powerful storage system. This storage engine 
 This abstraction will also allow us to change the type of storage easily without updating all of our codebase.
 The console will be a tool to validate this storage engine.
 
-## Command Interpreter (Console)
+## Command Interpreter
 
 The ALX Airbnb Console is built on a command interpreter that allows users to interact with the system through a series of commands. Here's how to start and use the console:
 
