@@ -84,13 +84,16 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, line):
         """Prints all string representation of all instances"""
         objects = models.storage.all()
+        objects_list = []
         if not line:
             for obj in objects.values():
-                print(obj)
+                objects_list.append(str(obj))
+            print(objects_list)
         elif line in HBNBCommand.classes:
             for obj in objects.values():
                 if obj.__class__.__name__ == line:
-                    print(obj)
+                    objects_list.append(str(obj))
+                print(objects_list)
         else:
             print("** class doesn't exist **")
 
@@ -114,9 +117,29 @@ class HBNBCommand(cmd.Cmd):
                 elif len(args) < 4:
                     print("** value missing **")
                 else:
-                    objects[key].__dict__[args[2]] = args[3]
+                    if args[2] in objects[key].keys():
+                        value_type = type(objects[key].__class__.__dict__[args[2]])
+                        setattr(objects[key], args[2], value_type(args[3]))
+                    else:
+                        setattr(objects[key], args[2], args[3])
                     objects[key].save()
+
+    def do_count(self, line):
+        """Counts the number of instances of a class"""
+        if not line:
+            print("** class name missing **")
+        elif line not in HBNBCommand.classes:
+            print("** class doesn't exist **")
+        else:
+            objects = models.storage.all()
+            count = 0
+            for obj in objects.values():
+                if obj.__class__.__name__ == line:
+                    count += 1
+            print(count)
 
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
+
+
