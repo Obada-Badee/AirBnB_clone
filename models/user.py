@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/ur/bin/python3
 
 """ A module that defines the user class"""
 
