@@ -4,6 +4,7 @@
 
 import cmd
 import models
+import re
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -93,7 +94,7 @@ class HBNBCommand(cmd.Cmd):
             for obj in objects.values():
                 if obj.__class__.__name__ == line:
                     objects_list.append(str(obj))
-                print(objects_list)
+            print(objects_list)
         else:
             print("** class doesn't exist **")
 
@@ -139,6 +140,63 @@ class HBNBCommand(cmd.Cmd):
                     count += 1
             print(count)
 
+    def default(self, line: str):
+        """Default command to handle commands followed by a dot"""
+        args = line.split(".")
+        class_name = args[0]
+        if len(args) == 1:
+            print("***Unknown syntax: {}".format(line))
+            return
+        try:
+            args = args[1].split("(")
+            command = args[0]
+            if command  == 'all':
+                self.do_all(class_name)
+            elif command == 'count':
+                self.do_count(class_name)
+            elif command == 'show':
+                args = args[1].split(')')
+                id_arg = args[0]
+                id_arg = id_arg.strip("'")
+                id_arg = id_arg.strip('"')
+                line = class_name + ' ' + id_arg
+                self.do_show(line)
+            elif command == 'destroy':
+                args = args[1].split(')')
+                id_arg = args[0]
+                id_arg = id_arg.strip("'")
+                id_arg = id_arg.strip('"')
+                line = class_name + ' ' + id_arg
+                self.do_destroy(line)
+            elif command == 'update':
+                rx = r'(\{[^{}]+\})'
+                dict_match = re.search(rx, args[1])
+                if dict_match is None:     
+                    args = args[1].split(', ')
+                    id_arg = args[0].strip("'")
+                    id_arg = id_arg.strip('"')
 
+                    name_arg = args[1].strip(',')
+                    val_arg = args[2]
+                    name_arg = name_arg.strip(' ')
+                    name_arg = name_arg.strip("'")
+                    name_arg = name_arg.strip('"')
+                    val_arg = val_arg.strip(' ')
+                    val_arg = val_arg.strip(')')
+                    line = class_name + ' ' + id_arg + ' ' + name_arg + ' ' + val_arg
+                    self.do_update(line)
+                else:
+                    args = args[1].split(', ')
+                    id_arg = args[0].strip("'")
+                    id_arg = id_arg.strip('"')
+                    for name_arg, val_arg in eval(dict_match.group(1)).items():
+                        line = class_name + ' ' + id_arg + ' ' + name_arg + ' ' + val_arg
+                        self.do_update(line)
+            else:
+                print("***Unknown syntax: {}".format(line))
+        except IndexError:
+            print("***Unknown syntax: {}".format(line))
+
+        
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
