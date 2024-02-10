@@ -164,6 +164,14 @@ class TestFileStorage_methods(unittest.TestCase):
         p = Place()
         r = Review()
 
+        models.storage.new(b)
+        models.storage.new(u)
+        models.storage.new(s)
+        models.storage.new(c)
+        models.storage.new(a)
+        models.storage.new(p)
+        models.storage.new(r)
+
         models.storage.save()
         models.storage.reload()
         self.assertIn(f'BaseModel.{b.id}', objects.keys())
