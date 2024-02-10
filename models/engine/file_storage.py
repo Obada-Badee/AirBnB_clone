@@ -46,7 +46,7 @@ class FileStorage:
         to the JSON file specified in `file_path` class variable
         """
 
-        with open(FileStorage.__file_path, "w") as f:
+        with open(FileStorage.__file_path, "w", encoding="UTF8") as f:
             objects_as_dict = {obj_id: obj.to_dict() for obj_id, obj
                                in FileStorage.__objects.items()}
             json.dump(objects_as_dict, f)
