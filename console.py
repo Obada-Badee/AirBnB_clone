@@ -194,6 +194,8 @@ class HBNBCommand(cmd.Cmd):
                 print("***Unknown syntax: {}".format(line))
         except IndexError:
             print("***Unknown syntax: {}".format(line))
-        
+
+
 if __name__ == "__main__":
+    """Entry Point of the Console """
     HBNBCommand().cmdloop()
