@@ -118,12 +118,8 @@ class HBNBCommand(cmd.Cmd):
                 elif len(args) < 4:
                     print("** value missing **")
                 else:
-                    if args[2] in objects[key].keys():
-                        value_type = type(
-                                objects[key].__class__.__dict__[args[2]])
-                        setattr(objects[key], args[2], value_type(args[3]))
-                    else:
-                        setattr(objects[key], args[2], args[3])
+                    value_type = type(eval(args[3]))
+                    setattr(objects[key], args[2], value_type(args[3]))
                     objects[key].save()
 
     def do_count(self, line):
@@ -183,6 +179,8 @@ class HBNBCommand(cmd.Cmd):
                     name_arg = name_arg.strip('"')
                     val_arg = val_arg.strip(' ')
                     val_arg = val_arg.strip(')')
+                    val_arg = val_arg.strip("'")
+                    val_arg = val_arg.strip('"')
                     line = class_name + ' ' + id_arg + ' ' + name_arg + ' ' + val_arg
                     self.do_update(line)
                 else:
