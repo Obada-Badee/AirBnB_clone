@@ -65,11 +65,16 @@ class TestBaseModel_Init(unittest.TestCase):
     def test_BaseModel_updated_at_attr_type(self):
         self.assertIs(type(BaseModel().updated_at), datetime)
 
-    def test_different_created_at_updated_at(self):
+    def test_different_created_at(self):
         b1 = BaseModel()
         sleep(0.04)
         b2 = BaseModel()
         self.assertLess(b1.created_at, b2.created_at)
+
+    def test_different_updated_at(self):
+        b1 = BaseModel()
+        sleep(0.04)
+        b2 = BaseModel()
         self.assertLess(b1.updated_at, b2.updated_at)
 
     def test_BaseModel_str_method(self):
