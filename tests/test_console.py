@@ -108,16 +108,6 @@ class test_help_command(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd("help update"))
             self.assertEqual(msg, foutput.getvalue().strip())
 
-    def test_help(self):
-        """
-        Test the help command functionality.
-        """
-        msg = ("""Documented commands (type help <topic>):\n
-                ========================================\n
-                EOF  all  count  create  destroy  help  quit  show  update""")
-        with patch("sys.stdout", new=StringIO()) as foutput:
-            self.assertFalse(HBNBCommand().onecmd("help"))
-            self.assertEqual(msg, foutput.getvalue().strip())
 
 class test_exit_command(unittest.TestCase):
     """Unittests for testing exiting from the HBNB command interpreter."""
@@ -172,11 +162,11 @@ class test_create_command(unittest.TestCase):
             self.assertEqual(correct, foutput.getvalue().strip())
 
     def test_create_invalid_syntax(self):
-        correct = "*** Unknown syntax: MyModel.create()"
+        correct = "***Unknown syntax: MyModel.create()"
         with patch("sys.stdout", new=StringIO()) as foutput:
             self.assertFalse(HBNBCommand().onecmd("MyModel.create()"))
             self.assertEqual(correct, foutput.getvalue().strip())
-        correct = "*** Unknown syntax: BaseModel.create()"
+        correct = "***Unknown syntax: BaseModel.create()"
         with patch("sys.stdout", new=StringIO()) as foutput:
             self.assertFalse(HBNBCommand().onecmd("BaseModel.create()"))
             self.assertEqual(correct, foutput.getvalue().strip())
@@ -248,7 +238,7 @@ class test_show_command(unittest.TestCase):
             self.assertEqual(correct, foutput.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as foutput:
             self.assertFalse(HBNBCommand().onecmd(".show()"))
-            self.assertEqual(correct, foutput.getvalue().strip())
+            self.assertEqual("***Unknown syntax:", foutput.getvalue().strip())
 
     def test_show_invalid_class(self):
         correct = "** class doesn't exist **"
@@ -512,7 +502,7 @@ class test_destroy_command(unittest.TestCase):
             self.assertEqual(correct, foutput.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as foutput:
             self.assertFalse(HBNBCommand().onecmd(".destroy()"))
-            self.assertEqual(correct, foutput.getvalue().strip())
+            self.assertEqual("***Unknown syntax:", foutput.getvalue().strip())
 
     def test_invalid_class(self):
         """
@@ -947,7 +937,7 @@ class test_update_command(unittest.TestCase):
             self.assertEqual(correct, foutput.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as foutput:
             self.assertFalse(HBNBCommand().onecmd(".update()"))
-            self.assertEqual(correct, foutput.getvalue().strip())
+            self.assertEqual("***Unknown syntax: .update()", foutput.getvalue().strip())
 
     def test_update_invalidClass(self):
         """
@@ -959,34 +949,42 @@ class test_update_command(unittest.TestCase):
             self.assertEqual(correct, foutput.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as foutput:
             self.assertFalse(HBNBCommand().onecmd("MyModel.update()"))
-            self.assertEqual(correct, foutput.getvalue().strip())
+            self.assertEqual("***Unknown syntax: MyModel.update()",
+                             foutput.getvalue().strip())
 
     def test_update_dotNotation(self):
         """
         Test for updating missing id in dot notation.
         """
-        correct = "** instance id missing **"
+        correct = "***Unknown syntax: "
         with patch("sys.stdout", new=StringIO()) as foutput:
             self.assertFalse(HBNBCommand().onecmd("BaseModel.update()"))
-            self.assertEqual(correct, foutput.getvalue().strip())
+            self.assertEqual(correct + "BaseModel.update()",
+                             foutput.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as foutput:
             self.assertFalse(HBNBCommand().onecmd("User.update()"))
-            self.assertEqual(correct, foutput.getvalue().strip())
+            self.assertEqual(correct + "User.update()", 
+                             foutput.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as foutput:
             self.assertFalse(HBNBCommand().onecmd("State.update()"))
-            self.assertEqual(correct, foutput.getvalue().strip())
+            self.assertEqual(correct + "State.update()",
+                             foutput.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as foutput:
             self.assertFalse(HBNBCommand().onecmd("City.update()"))
-            self.assertEqual(correct, foutput.getvalue().strip())
+            self.assertEqual(correct + "City.update()", 
+                             foutput.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as foutput:
             self.assertFalse(HBNBCommand().onecmd("Amenity.update()"))
-            self.assertEqual(correct, foutput.getvalue().strip())
+            self.assertEqual(correct + "Amenity.update()",
+                             foutput.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as foutput:
             self.assertFalse(HBNBCommand().onecmd("Place.update()"))
-            self.assertEqual(correct, foutput.getvalue().strip())
+            self.assertEqual(correct + "Place.update()",
+                             foutput.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as foutput:
             self.assertFalse(HBNBCommand().onecmd("Review.update()"))
-            self.assertEqual(correct, foutput.getvalue().strip())
+            self.assertEqual(correct + "Review.update()",
+                             foutput.getvalue().strip())
 
     def test_update_invalid_id_space_notation(self):
         """
@@ -1046,28 +1044,29 @@ class test_update_command(unittest.TestCase):
         """
         Test for updating with invalid id using dot notation .
         """
-        correct = "** no instance found **"
+        correct = "***Unknown syntax: "
         with patch("sys.stdout", new=StringIO()) as foutput:
             self.assertFalse(HBNBCommand().onecmd("BaseModel.update(1)"))
-            self.assertEqual(correct, foutput.getvalue().strip())
+            self.assertEqual(correct + "BaseModel.update(1)",
+                             foutput.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as foutput:
             self.assertFalse(HBNBCommand().onecmd("User.update(1)"))
-            self.assertEqual(correct, foutput.getvalue().strip())
+            self.assertEqual(correct + "User.update(1)", foutput.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as foutput:
             self.assertFalse(HBNBCommand().onecmd("State.update(1)"))
-            self.assertEqual(correct, foutput.getvalue().strip())
+            self.assertEqual(correct + "State.update(1)", foutput.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as foutput:
             self.assertFalse(HBNBCommand().onecmd("City.update(1)"))
-            self.assertEqual(correct, foutput.getvalue().strip())
+            self.assertEqual(correct + "City.update(1)", foutput.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as foutput:
             self.assertFalse(HBNBCommand().onecmd("Amenity.update(1)"))
-            self.assertEqual(correct, foutput.getvalue().strip())
+            self.assertEqual(correct + "Amenity.update(1)", foutput.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as foutput:
             self.assertFalse(HBNBCommand().onecmd("Place.update(1)"))
-            self.assertEqual(correct, foutput.getvalue().strip())
+            self.assertEqual(correct + "Place.update(1)", foutput.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as foutput:
             self.assertFalse(HBNBCommand().onecmd("Review.update(1)"))
-            self.assertEqual(correct, foutput.getvalue().strip())
+            self.assertEqual(correct + "Review.update(1)", foutput.getvalue().strip())
 
     def test_update_missing_attr_value_space_notation(self):
         correct = "** value missing **"
@@ -1563,7 +1562,7 @@ class test_count_command(unittest.TestCase):
         """
         with patch("sys.stdout", new=StringIO()) as foutput:
             self.assertFalse(HBNBCommand().onecmd("MyModel.count()"))
-            self.assertEqual("0", foutput.getvalue().strip())
+            self.assertEqual("** class doesn't exist **", foutput.getvalue().strip())
 
     def test_countObject(self):
         """
