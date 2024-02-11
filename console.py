@@ -118,8 +118,10 @@ class HBNBCommand(cmd.Cmd):
                 elif len(args) < 4:
                     print("** value missing **")
                 else:
-                    value_type = type(eval(args[3]))
-                    setattr(objects[key], args[2], value_type(args[3]))
+                    try:
+                        setattr(objects[key], args[2], eval(args[3]))
+                    except NameError:
+                        setattr(objects[key], args[2], args[3])
                     objects[key].save()
 
     def do_count(self, line):
@@ -181,14 +183,14 @@ class HBNBCommand(cmd.Cmd):
                     valArg = valArg.strip(')')
                     valArg = valArg.strip("'")
                     valArg = valArg.strip('"')
-                    line = f"{class_name} {id_arg} {nameArg} {val_arg}"
+                    line = f"{class_name} {id_arg} {nameArg} {valArg}"
                     self.do_update(line)
                 else:
                     args = args[1].split(', ')
                     id_arg = args[0].strip("'")
                     id_arg = id_arg.strip('"')
-                    for nameArg, val_arg in eval(dict_match.group(1)).items():
-                        line = f"{class_name} {id_arg} {nameArg} {val_arg}"
+                    for nameArg, valArg in eval(dict_match.group(1)).items():
+                        line = f"{class_name} {id_arg} {nameArg} {valArg}"
                         self.do_update(line)
             else:
                 print("***Unknown syntax: {}".format(line))
