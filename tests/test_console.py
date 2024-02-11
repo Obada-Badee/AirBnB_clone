@@ -937,7 +937,8 @@ class test_update_command(unittest.TestCase):
             self.assertEqual(correct, foutput.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as foutput:
             self.assertFalse(HBNBCommand().onecmd(".update()"))
-            self.assertEqual("***Unknown syntax: .update()", foutput.getvalue().strip())
+            self.assertEqual("***Unknown syntax: .update()",
+                             foutput.getvalue().strip())
 
     def test_update_invalidClass(self):
         """
@@ -963,7 +964,7 @@ class test_update_command(unittest.TestCase):
                              foutput.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as foutput:
             self.assertFalse(HBNBCommand().onecmd("User.update()"))
-            self.assertEqual(correct + "User.update()", 
+            self.assertEqual(correct + "User.update()",
                              foutput.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as foutput:
             self.assertFalse(HBNBCommand().onecmd("State.update()"))
@@ -971,7 +972,7 @@ class test_update_command(unittest.TestCase):
                              foutput.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as foutput:
             self.assertFalse(HBNBCommand().onecmd("City.update()"))
-            self.assertEqual(correct + "City.update()", 
+            self.assertEqual(correct + "City.update()",
                              foutput.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as foutput:
             self.assertFalse(HBNBCommand().onecmd("Amenity.update()"))
@@ -1051,22 +1052,28 @@ class test_update_command(unittest.TestCase):
                              foutput.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as foutput:
             self.assertFalse(HBNBCommand().onecmd("User.update(1)"))
-            self.assertEqual(correct + "User.update(1)", foutput.getvalue().strip())
+            self.assertEqual(correct + "User.update(1)",
+                             foutput.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as foutput:
             self.assertFalse(HBNBCommand().onecmd("State.update(1)"))
-            self.assertEqual(correct + "State.update(1)", foutput.getvalue().strip())
+            self.assertEqual(correct + "State.update(1)",
+                             foutput.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as foutput:
             self.assertFalse(HBNBCommand().onecmd("City.update(1)"))
-            self.assertEqual(correct + "City.update(1)", foutput.getvalue().strip())
+            self.assertEqual(correct + "City.update(1)",
+                             foutput.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as foutput:
             self.assertFalse(HBNBCommand().onecmd("Amenity.update(1)"))
-            self.assertEqual(correct + "Amenity.update(1)", foutput.getvalue().strip())
+            self.assertEqual(correct + "Amenity.update(1)",
+                             foutput.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as foutput:
             self.assertFalse(HBNBCommand().onecmd("Place.update(1)"))
-            self.assertEqual(correct + "Place.update(1)", foutput.getvalue().strip())
+            self.assertEqual(correct + "Place.update(1)",
+                             foutput.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as foutput:
             self.assertFalse(HBNBCommand().onecmd("Review.update(1)"))
-            self.assertEqual(correct + "Review.update(1)", foutput.getvalue().strip())
+            self.assertEqual(correct + "Review.update(1)",
+                             foutput.getvalue().strip())
 
     def test_update_missing_attr_value_space_notation(self):
         correct = "** value missing **"
@@ -1562,7 +1569,8 @@ class test_count_command(unittest.TestCase):
         """
         with patch("sys.stdout", new=StringIO()) as foutput:
             self.assertFalse(HBNBCommand().onecmd("MyModel.count()"))
-            self.assertEqual("** class doesn't exist **", foutput.getvalue().strip())
+            self.assertEqual("** class doesn't exist **",
+                             foutput.getvalue().strip())
 
     def test_countObject(self):
         """
