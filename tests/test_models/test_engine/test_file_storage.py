@@ -68,7 +68,6 @@ class TestFileStorage_methods(unittest.TestCase):
             os.rename("tmp.json", "file.json")
         except FileNotFoundError:
             pass
-        FileStorage._FileStorage__objects = {}
 
     def test_all_no_args(self):
         self.assertIs(type(models.storage.all()), dict)
