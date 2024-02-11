@@ -140,7 +140,7 @@ class HBNBCommand(cmd.Cmd):
 
     def default(self, line: str):
         """Default command to handle commands followed by a dot"""
-        args = line.split(".")
+        args = line.split(".", 1)
         class_name = args[0]
         if len(args) == 1:
             print("***Unknown syntax: {}".format(line))
