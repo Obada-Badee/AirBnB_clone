@@ -1,7 +1,7 @@
 <h1 align="center">AirBnB clone</h1>
 
 <p align="center">
-  <img src="https://github.com/Obada-Badee/AirBnB_clone/blob/master/assets/hbnb-logo.png" alt="HBNB">
+  <img src="https://github.com/Obada-Badee/AirBnB_clone/blob/main/assets/hbnb-logo.png" alt="HBNB">
 </p>
 
 ## Table of Contents
